@@ -22,7 +22,6 @@
     "clean": "rm -rf ./dist",
     "compile": "tsc",
     "lint": "eslint --ext .tsx,.ts ./src/**",
-    "test": "jest --verbose",
     "lint:fix": "eslint --ext .tsx,.ts ./src/**",
     "webpack:production": "webpack --config=./webpack.config.ts --env mode=production",
     "prepublishOnly": "npm run lint && npm run build",
