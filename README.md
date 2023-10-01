@@ -1,1 +1,1 @@
-# i18n
+# @architecturex/core.i18n
