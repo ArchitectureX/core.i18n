@@ -1,3 +1,6 @@
+import translations from './translations'
+
+export type Translations = keyof typeof translations
 export type Locale = 'de-de' | 'en-gb' | 'en-us' | 'es-mx' | 'fr-fr' | 'it-it' | 'pt-br' | string
 
 export const currentLocales: any = {
@@ -157,4 +160,25 @@ export const getUserLanguage = (acceptLanguage: string, locales: Locale[]) => {
 
   const validLocale = isValidLocale(userLanguage, locales)
   return validLocale ? userLanguage.toLowerCase() : currentLocales['en-us'].lang.toLowerCase()
+}
+
+const t = (locale: Locale, key: Translations, replacements?: any) => {
+  const translation: any = translations[key]
+  const currentLocale = locale
+  let text = (translation && translation[currentLocale]) || (key as Translations)
+
+  const matches = text.match(/\{(.*?)\}/g)
+
+  if (matches) {
+    matches.forEach((match: string) => {
+      const tag = match.replace(/[{}]/g, '')
+      const replacement = replacements[tag]
+
+      if (replacement) {
+        text = text.replace(`{${tag}}`, replacement) as Translations
+      }
+    })
+  }
+
+  return text
 }
