@@ -162,7 +162,7 @@ export const getUserLanguage = (acceptLanguage: string, locales: Locale[]) => {
   return validLocale ? userLanguage.toLowerCase() : currentLocales['en-us'].lang.toLowerCase()
 }
 
-const t = (locale: Locale, key: Translations, replacements?: any) => {
+export const t = (locale: Locale, key: Translations, replacements?: any) => {
   const translation: any = translations[key]
   const currentLocale = locale
   let text = (translation && translation[currentLocale]) || (key as Translations)

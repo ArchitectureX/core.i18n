@@ -26,6 +26,7 @@ jobs:
           npx webpack --version
           echo "Webpack CLI version:"
           npx webpack-cli --version
+      - run: npm run lint
       - run: npm run build
       - run: chmod u+x publish.sh
       - run: git config --global user.email "foggdev@gmail.com"
