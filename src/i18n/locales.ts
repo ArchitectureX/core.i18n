@@ -162,23 +162,4 @@ export const getUserLanguage = (acceptLanguage: string, locales: Locale[]) => {
   return validLocale ? userLanguage.toLowerCase() : currentLocales['en-us'].lang.toLowerCase()
 }
 
-export const t = (locale: Locale, key: Translations, replacements?: any) => {
-  const translation: any = translations[key]
-  const currentLocale = locale
-  let text = (translation && translation[currentLocale]) || (key as Translations)
-
-  const matches = text.match(/\{(.*?)\}/g)
-
-  if (matches) {
-    matches.forEach((match: string) => {
-      const tag = match.replace(/[{}]/g, '')
-      const replacement = replacements[tag]
-
-      if (replacement) {
-        text = text.replace(`{${tag}}`, replacement) as Translations
-      }
-    })
-  }
-
-  return text
-}
+export const t = translations
